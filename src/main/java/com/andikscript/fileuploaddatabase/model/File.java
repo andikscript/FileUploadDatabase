@@ -19,6 +19,8 @@ public class File {
     @Column(name = "data", nullable = false)
     private byte[] data;
 
+    public File(){}
+
     public File(String name, String type, byte[] data) {
         this.name = name;
         this.type = type;
