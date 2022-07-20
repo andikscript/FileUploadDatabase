@@ -2,8 +2,10 @@ package com.andikscript.fileuploaddatabase.controller;
 
 import com.andikscript.fileuploaddatabase.message.ResponseFile;
 import com.andikscript.fileuploaddatabase.message.ResponseMessage;
+import com.andikscript.fileuploaddatabase.model.File;
 import com.andikscript.fileuploaddatabase.service.FileStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -36,7 +38,7 @@ public class FilesController {
                 .map(file -> {
                     String fileDownloadUri = ServletUriComponentsBuilder
                             .fromCurrentContextPath()
-                            .path("/files/")
+                            .path("/api/file/download/")
                             .path(String.valueOf(file.getId()))
                             .toUriString();
 
@@ -48,5 +50,14 @@ public class FilesController {
                 }).collect(Collectors.toList());
 
         return ResponseEntity.status(HttpStatus.OK).body(list);
+    }
+
+    @GetMapping(value = "/download/{id}")
+    public ResponseEntity<byte[]> getFile(@PathVariable(value = "id") Integer id) {
+        File file = fileStorageService.getFile(id);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""
+                + file.getName())
+                .body(file.getData());
     }
 }
