@@ -10,6 +10,13 @@ public class ResponseFile {
 
     private long size;
 
+    public ResponseFile(String name, String type, String url, long size) {
+        this.name = name;
+        this.type = type;
+        this.url = url;
+        this.size = size;
+    }
+
     public String getName() {
         return name;
     }
