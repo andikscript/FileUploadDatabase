@@ -17,12 +17,12 @@ public class FileStorageServiceImpl implements FileStorageService {
     private FileRepository fileRepository;
 
     @Override
-    public File store(MultipartFile file) throws IOException {
+    public void store(MultipartFile file) throws IOException {
         File file1 = new File(StringUtils.cleanPath(
                 file.getOriginalFilename()),
                 file.getContentType(),
                 file.getBytes());
-        return fileRepository.save(file1);
+        fileRepository.save(file1);
     }
 
     @Override

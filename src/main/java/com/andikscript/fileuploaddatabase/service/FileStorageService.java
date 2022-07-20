@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 
 public interface FileStorageService {
 
-    public File store(MultipartFile file) throws IOException;
+    public void store(MultipartFile file) throws IOException;
 
     public File getFile(Integer id);
 
