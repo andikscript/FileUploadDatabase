@@ -6,7 +6,7 @@ Simple upload & download file by using spring boot on database mysql
 - Upload and Download file
 - Max file size : 30 MB
 
-# API
+## API
 
 Methods | Url | Action | Body |
 --- | --- | --- | --- |
