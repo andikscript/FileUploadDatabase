@@ -8,9 +8,9 @@ public class ResponseFile {
 
     private String url;
 
-    private long size;
+    private String size;
 
-    public ResponseFile(String name, String type, String url, long size) {
+    public ResponseFile(String name, String type, String url, String size) {
         this.name = name;
         this.type = type;
         this.url = url;
@@ -41,11 +41,11 @@ public class ResponseFile {
         this.url = url;
     }
 
-    public long getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(long size) {
+    public void setSize(String size) {
         this.size = size;
     }
 }
