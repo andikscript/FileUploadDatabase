@@ -16,4 +16,11 @@ public class FilesUploadException extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED)
                 .body(new ResponseMessage("Cannot upload file"));
     }
+
+    @ExceptionHandler(OutOfMemoryError.class)
+    public ResponseEntity<?> outSize(OutOfMemoryError exc) {
+        return ResponseEntity
+                .status(HttpStatus.EXPECTATION_FAILED)
+                .body(new ResponseMessage("Out size"));
+    }
 }
