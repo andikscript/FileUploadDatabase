@@ -34,4 +34,9 @@ public class FileStorageServiceImpl implements FileStorageService {
     public Stream<File> getAllFiles() {
         return fileRepository.findAll().stream();
     }
+
+    @Override
+    public File getByName(String name) {
+        return fileRepository.findByName(name);
+    }
 }

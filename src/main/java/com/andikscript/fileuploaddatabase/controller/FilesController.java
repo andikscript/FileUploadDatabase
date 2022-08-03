@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Controller
 @RestController
 @RequestMapping(value = "/api/file")
 public class FilesController {
@@ -58,6 +57,15 @@ public class FilesController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""
                 + file.getName())
+                .body(file.getData());
+    }
+
+    @GetMapping(value = "/download/name/{name}")
+    public ResponseEntity<byte[]> getFileByName(@PathVariable(value = "name") String name) {
+        File file = fileStorageService.getByName(name);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\""
+                        + file.getName())
                 .body(file.getData());
     }
 }

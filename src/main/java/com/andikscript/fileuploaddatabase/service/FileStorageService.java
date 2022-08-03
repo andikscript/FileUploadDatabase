@@ -8,9 +8,11 @@ import java.util.stream.Stream;
 
 public interface FileStorageService {
 
-    public void store(MultipartFile file) throws IOException;
+    void store(MultipartFile file) throws IOException;
 
-    public File getFile(Integer id);
+    File getFile(Integer id);
 
-    public Stream<File> getAllFiles();
+    Stream<File> getAllFiles();
+
+    File getByName(String name);
 }
