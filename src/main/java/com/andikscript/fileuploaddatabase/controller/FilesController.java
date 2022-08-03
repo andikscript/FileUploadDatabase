@@ -68,4 +68,15 @@ public class FilesController {
                         + file.getName())
                 .body(file.getData());
     }
+
+    @GetMapping(value = "/open/{name}")
+    public ResponseEntity<?> openFileByName(@PathVariable(value = "name") String name) {
+        // jika eror
+        //  com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'data' at row 1 when upload pdf on mysql
+        // maka ubah tipe data kolom menjadi besar. misal dari blob diubah ke longblob
+        File file = fileStorageService.getByName(name);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_TYPE, file.getType())
+                .body(file.getData());
+    }
 }
